@@ -10,5 +10,7 @@ package guillermoespinal_lab8;
  * @author admin
  */
 public class Mensaje {
+    /* private String mensaje;
+    private Date*/
     
 }

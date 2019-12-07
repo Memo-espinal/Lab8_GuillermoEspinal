@@ -7,7 +7,11 @@ package guillermoespinal_lab8;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +28,9 @@ public class Vista extends javax.swing.JFrame {
     public Vista() {
         initComponents();
          dba.conectar();
+         llamada = new hilollamada();//(lb_s,lb_m,lb_h);
+         llamada = new hilollamada(lb_s, lb_m, lb_h);
+        
       
     }
 
@@ -36,6 +43,19 @@ public class Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_llamada = new javax.swing.JDialog();
+        lb_nombre = new javax.swing.JLabel();
+        bt_fin = new javax.swing.JButton();
+        lb_s = new javax.swing.JLabel();
+        lb_m = new javax.swing.JLabel();
+        lb_h = new javax.swing.JLabel();
+        lb_s1 = new javax.swing.JLabel();
+        lb_s2 = new javax.swing.JLabel();
+        jd_mensaje = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ta_mensaje = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
+        cb_mensajiar = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -62,10 +82,125 @@ public class Vista extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         tf_numero1 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_lista = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        cb_eliminar = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_specs = new javax.swing.JTextArea();
+        bt_eliminar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        cb_llamar = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        table_mensajes = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+
+        lb_nombre.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+
+        bt_fin.setText("Finalizar llamada");
+        bt_fin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_finMouseClicked(evt);
+            }
+        });
+
+        lb_s.setText("00");
+
+        lb_m.setText("00");
+
+        lb_h.setText("00");
+
+        lb_s1.setText(":");
+
+        lb_s2.setText(":");
+
+        javax.swing.GroupLayout jd_llamadaLayout = new javax.swing.GroupLayout(jd_llamada.getContentPane());
+        jd_llamada.getContentPane().setLayout(jd_llamadaLayout);
+        jd_llamadaLayout.setHorizontalGroup(
+            jd_llamadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_llamadaLayout.createSequentialGroup()
+                .addGroup(jd_llamadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_llamadaLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(lb_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_llamadaLayout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(lb_h)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_s2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_m)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_s1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_s))
+                    .addGroup(jd_llamadaLayout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(bt_fin)))
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+        jd_llamadaLayout.setVerticalGroup(
+            jd_llamadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_llamadaLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(lb_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addGroup(jd_llamadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_s)
+                    .addComponent(lb_h)
+                    .addComponent(lb_m)
+                    .addComponent(lb_s1)
+                    .addComponent(lb_s2))
+                .addGap(53, 53, 53)
+                .addComponent(bt_fin)
+                .addGap(58, 58, 58))
+        );
+
+        ta_mensaje.setColumns(20);
+        ta_mensaje.setRows(5);
+        jScrollPane4.setViewportView(ta_mensaje);
+
+        jButton4.setText("Enviar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_mensajeLayout = new javax.swing.GroupLayout(jd_mensaje.getContentPane());
+        jd_mensaje.getContentPane().setLayout(jd_mensajeLayout);
+        jd_mensajeLayout.setHorizontalGroup(
+            jd_mensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_mensajeLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jd_mensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_mensajeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_mensajeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_mensajiar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jd_mensajeLayout.setVerticalGroup(
+            jd_mensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_mensajeLayout.createSequentialGroup()
+                .addGroup(jd_mensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_mensajeLayout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(cb_mensajiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_mensajeLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(99, 99, 99))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,7 +267,7 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +294,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(tf_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addComponent(bt_agregar)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Contactos", jPanel1);
@@ -223,7 +358,7 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_correo1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,25 +394,12 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(tf_numero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(104, 104, 104))
         );
 
         jTabbedPane1.addTab("Modificar algun contacto", jPanel2);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab4", jPanel4);
 
         jt_lista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -303,7 +425,7 @@ public class Vista extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -311,16 +433,143 @@ public class Vista extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Contactos", jPanel3);
+
+        cb_eliminar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_eliminarItemStateChanged(evt);
+            }
+        });
+
+        ta_specs.setColumns(20);
+        ta_specs.setRows(5);
+        jScrollPane2.setViewportView(ta_specs);
+
+        bt_eliminar.setText("Eliminar");
+        bt_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_eliminarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(cb_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(344, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(bt_eliminar)
+                        .addGap(120, 120, 120))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(cb_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98)
+                .addComponent(bt_eliminar)
+                .addContainerGap(132, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Eliminar Contactos", jPanel4);
+
+        jButton2.setText("LLamar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(241, 241, 241)
+                        .addComponent(cb_llamar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(281, 281, 281)
+                        .addComponent(jButton2)))
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(cb_llamar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(169, 169, 169))
+        );
+
+        jTabbedPane1.addTab("Llamar ", jPanel5);
+
+        table_mensajes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Aquien", "Fecha", "Mensaje"
+            }
+        ));
+        jScrollPane3.setViewportView(table_mensajes);
+
+        jButton3.setText("Enviar Nuevo Mensaje");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128)
+                .addComponent(jButton3)
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Mensajiar", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,6 +667,48 @@ public class Vista extends javax.swing.JFrame {
       }catch(Exception e ){
           
       }
+      try {
+            cb_eliminar.setModel(new DefaultComboBoxModel<>());
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_eliminar.getModel();
+            for (int i = 0; i < contactos.size(); i++) {
+                modelo.addElement(contactos.get(i));
+            }
+      }catch(Exception e ){
+          
+      }
+      try {
+            cb_llamar.setModel(new DefaultComboBoxModel<>());
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_llamar.getModel();
+            for (int i = 0; i < contactos.size(); i++) {
+                modelo.addElement(contactos.get(i));
+            }
+      }catch(Exception e ){
+          
+      }
+      /*table_mensajes.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+      
+      },
+      new String [] {
+      "Nombre", "Aquien", "Fecha", "Mensaje"
+      }
+      ) {
+      boolean[] canEdit = new boolean [] {
+      false, false, false, false
+      };
+      
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+      return canEdit [columnIndex];
+      }
+      });*/
+        try {
+                cb_mensajiar.setModel(new DefaultComboBoxModel<>());
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_mensajiar.getModel();
+                for (int i = 0; i < contactos.size(); i++) {
+                    modelo.addElement(contactos.get(i));
+                }
+            } catch (Exception e) {
+            }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void cb_contactosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_contactosItemStateChanged
@@ -484,6 +775,117 @@ public class Vista extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void cb_eliminarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_eliminarItemStateChanged
+       Contacto contact = (Contacto)cb_eliminar.getSelectedItem();
+        ta_specs.setText(contact.getNombre()+"\n"
+                +contact.getNumero()+"\n"
+                +contact.getEdad()+"\n"
+                +contact.getCorreo()+"\n"
+                +contact.getDirrecion());
+        //eliminar
+//        Dba db = new Dba("./base1.mdb");
+//        db.conectar();
+//        try {
+//            db.query.execute("delete from alumnos where cuenta=5000");
+//            db.commit();
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        db.desconectar();
+/* dba.conectar();
+try {
+dba.query.execute("delete from contactos where Numero="+contact.getNumero()+"");
+dba.commit();
+} catch (Exception e) {
+}*/
+
+                
+    }//GEN-LAST:event_cb_eliminarItemStateChanged
+
+    private void bt_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarMouseClicked
+       Contacto contact = (Contacto)cb_eliminar.getSelectedItem();
+        dba.conectar();
+        try {
+            dba.query.execute("delete from contactos where Numero='"+contact.getNumero()+"'");
+            dba.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        dba.desconectar();
+        JOptionPane.showMessageDialog(this, "Se a eliminado el contacto");
+        
+        try {
+            cargarContactos();
+            
+            try {
+                cb_eliminar.setModel(new DefaultComboBoxModel<>());
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_eliminar.getModel();
+                for (int i = 0; i < contactos.size(); i++) {
+                    modelo.addElement(contactos.get(i));
+                }
+            } catch (Exception e) {
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_bt_eliminarMouseClicked
+
+    private void bt_finMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_finMouseClicked
+       JOptionPane.showMessageDialog(this, "Llamada finalizada");
+       llamada.setVive(false);
+       
+    }//GEN-LAST:event_bt_finMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        cargarllamada();
+        jd_llamada.setModal(true);
+        jd_llamada.pack();
+        jd_llamada.setVisible(true);
+        jd_llamada.setEnabled(true);
+      
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        jd_mensaje.setModal(true);
+        jd_mensaje.pack();
+        jd_mensaje.setVisible(true);
+        jd_mensaje.setEnabled(true);
+        
+            
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        try {
+            mensajiar= (Contacto)cb_mensajiar.getSelectedItem();
+            String mensaje = ta_mensaje.getText();
+            Date date = new Date();
+            SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy");
+            
+            String fecha = sp.format(date);
+            /* dba.query.execute("INSERT INTO contactos(Nombre,Edad,Numero,Correo,Direccion) "
+            + "VALUES ('"+nombre+"','"+(Integer.toString(edad))+"','"+numero+"','"+correo+"','"+direccion+"')");
+            dba.commit();
+            dba.desconectar();*/
+            dba.conectar();
+            dba.query.execute("INSERT INTO mensajes(Nombre,Aquien,Fecha,Mensaje) "
+                    + "VALUES('"+you+"','"+mensajiar.getNombre()+"','"+fecha+"','"+mensaje+"')");
+            dba.commit();
+            dba.desconectar();
+              JOptionPane.showMessageDialog(this,"Se a enviado el mensaje");
+              DefaultTableModel modelo = (DefaultTableModel)table_mensajes.getModel();
+              Object[] row = {you,mensajiar.getNombre(),fecha,mensaje};
+              modelo.addRow(row);
+        } catch (SQLException ex) {
+            //Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+          JOptionPane.showMessageDialog(this, "me mame");
+          ex.printStackTrace();
+        }
+        
+        
+    }//GEN-LAST:event_jButton4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -506,6 +908,17 @@ public class Vista extends javax.swing.JFrame {
         }
         dba.desconectar();
         //ResultSet
+    }
+    public void cargarllamada(){
+         try {
+             
+            llamar = (Contacto) cb_llamar.getSelectedItem();
+            lb_nombre.setText(llamar.getNombre());
+            
+            //hilollamada llamada = new hilollamada(lb_s,lb_m,lb_h);
+            llamada.start();
+        } catch (Exception e) {
+        }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -541,8 +954,16 @@ public class Vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_agregar;
+    private javax.swing.JButton bt_eliminar;
+    private javax.swing.JButton bt_fin;
     private javax.swing.JComboBox<String> cb_contactos;
+    private javax.swing.JComboBox<String> cb_eliminar;
+    private javax.swing.JComboBox<String> cb_llamar;
+    private javax.swing.JComboBox<String> cb_mensajiar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -557,11 +978,27 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JDialog jd_llamada;
+    private javax.swing.JDialog jd_mensaje;
     private javax.swing.JTable jt_lista;
+    private javax.swing.JLabel lb_h;
+    private javax.swing.JLabel lb_m;
+    private javax.swing.JLabel lb_nombre;
+    private javax.swing.JLabel lb_s;
+    private javax.swing.JLabel lb_s1;
+    private javax.swing.JLabel lb_s2;
     private javax.swing.JSpinner sp_edad;
     private javax.swing.JSpinner sp_edad1;
+    private javax.swing.JTextArea ta_mensaje;
+    private javax.swing.JTextArea ta_specs;
+    private javax.swing.JTable table_mensajes;
     private javax.swing.JTextField tf_correo;
     private javax.swing.JTextField tf_correo1;
     private javax.swing.JTextField tf_dirreccion;
@@ -577,7 +1014,9 @@ String numero= "3163-6701";
 String correotu = "guiller.gaes@gmail.com";
 int edad = 18;
   Dba dba = new Dba("./contactos.accdb");
-       
+  Contacto llamar = new Contacto();
+   hilollamada llamada = new hilollamada();//(lb_s,lb_m,lb_h);
+   Contacto mensajiar ;
 
 
 
